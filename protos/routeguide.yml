@@ -1,0 +1,15 @@
+ type: google.api.Service
+ config_version: 3
+
+ http:
+   rules:
+   - selector: routeguide.RouteGuide.GetFeature
+     get: /v1/routeguide/features/{latitude}/{longitude}
+   - selector: routeguide.RouteGuide.ListFeatures
+     get: /v1/routeguide/features/{lo.latitude}/{lo.longitude}/{hi.latitude}/{hi.longitude}
+   - selector: routeguide.RouteGuide.RecordRoute
+     post: /v1/routeguide/route
+     body: "*"
+   # - selector: routeguide.RouteGuide.RouteChat
+   #   post: /v1/routeguide/feature
+   #   body: "*"
