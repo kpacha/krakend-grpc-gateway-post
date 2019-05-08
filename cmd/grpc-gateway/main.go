@@ -22,11 +22,7 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	cfg := map[string]interface{}{
-		"name":      "",
-		"endpoints": []interface{}{*helloworldEndpoint, *routeguideEndpoint},
-	}
-	mux, err := gateway.New(ctx, cfg)
+	mux, err := gateway.New(ctx, *helloworldEndpoint, *routeguideEndpoint)
 	if err != nil {
 		log.Printf("Setting up the gateway: %s", err.Error())
 		return

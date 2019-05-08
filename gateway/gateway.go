@@ -2,7 +2,6 @@ package gateway
 
 import (
 	"context"
-	"errors"
 	"net/http"
 
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
@@ -14,20 +13,15 @@ import (
 	"github.com/kpacha/krakend-grpc-post/generated/routeguide"
 )
 
-func New(ctx context.Context, extra map[string]interface{}) (http.Handler, error) {
-	cfg := parse(extra)
-	if cfg == nil {
-		return nil, errors.New("wrong config")
-	}
-
+func New(ctx context.Context, helloEndpoint, routeEndpoint string) (http.Handler, error) {
 	gw := runtime.NewServeMux()
 	opts := []grpc.DialOption{grpc.WithInsecure()}
 
-	if err := helloworld.RegisterGreeterHandlerFromEndpoint(ctx, gw, cfg.helloEndpoint, opts); err != nil {
+	if err := helloworld.RegisterGreeterHandlerFromEndpoint(ctx, gw, helloEndpoint, opts); err != nil {
 		return nil, err
 	}
 
-	if err := routeguide.RegisterRouteGuideHandlerFromEndpoint(ctx, gw, cfg.routeEndpoint, opts); err != nil {
+	if err := routeguide.RegisterRouteGuideHandlerFromEndpoint(ctx, gw, routeEndpoint, opts); err != nil {
 		return nil, err
 	}
 
@@ -40,36 +34,4 @@ func New(ctx context.Context, extra map[string]interface{}) (http.Handler, error
 	mux.Handle("/", gw)
 
 	return mux, nil
-}
-
-func parse(extra map[string]interface{}) *opts {
-	name, ok := extra["name"].(string)
-	if !ok {
-		return nil
-	}
-
-	rawEs, ok := extra["endpoints"]
-	if !ok {
-		return nil
-	}
-	es, ok := rawEs.([]interface{})
-	if !ok || len(es) < 2 {
-		return nil
-	}
-	endpoints := make([]string, len(es))
-	for i, e := range es {
-		endpoints[i] = e.(string)
-	}
-
-	return &opts{
-		name:          name,
-		helloEndpoint: endpoints[0],
-		routeEndpoint: endpoints[1],
-	}
-}
-
-type opts struct {
-	name          string
-	helloEndpoint string
-	routeEndpoint string
 }
