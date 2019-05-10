@@ -14,7 +14,7 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/kpacha/krakend-grpc-post/generated/routeguide"
+	"github.com/kpacha/krakend-grpc-gateway-post/generated/routeguide"
 	grpc "google.golang.org/grpc"
 )
 

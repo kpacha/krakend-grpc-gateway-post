@@ -8,9 +8,9 @@ import (
 	"github.com/rakyll/statik/fs"
 	"google.golang.org/grpc"
 
-	_ "github.com/kpacha/krakend-grpc-post/gateway/statik"
-	"github.com/kpacha/krakend-grpc-post/generated/helloworld"
-	"github.com/kpacha/krakend-grpc-post/generated/routeguide"
+	_ "github.com/kpacha/krakend-grpc-gateway-post/gateway/statik"
+	"github.com/kpacha/krakend-grpc-gateway-post/generated/helloworld"
+	"github.com/kpacha/krakend-grpc-gateway-post/generated/routeguide"
 )
 
 func New(ctx context.Context, helloEndpoint, routeEndpoint string) (http.Handler, error) {

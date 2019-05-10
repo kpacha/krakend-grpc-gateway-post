@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/kpacha/krakend-grpc-post/gateway"
+	"github.com/kpacha/krakend-grpc-gateway-post/gateway"
 )
 
 var (

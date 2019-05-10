@@ -6,14 +6,14 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/kpacha/krakend-grpc-post/gateway"
+	"github.com/kpacha/krakend-grpc-gateway-post/gateway"
 )
 
 func init() {
 	fmt.Println("krakend-grpc-post plugin loaded!!!")
 }
 
-var GRPCRegisterer = registerer("grpc-post")
+var ClientRegisterer = registerer("grpc-post")
 
 type registerer string
 

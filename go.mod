@@ -1,4 +1,4 @@
-module github.com/kpacha/krakend-grpc-post
+module github.com/kpacha/krakend-grpc-gateway-post
 
 go 1.12
 

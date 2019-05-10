@@ -7,7 +7,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/kpacha/krakend-grpc-post/generated/helloworld"
+	"github.com/kpacha/krakend-grpc-gateway-post/generated/helloworld"
 	grpc "google.golang.org/grpc"
 )
 
