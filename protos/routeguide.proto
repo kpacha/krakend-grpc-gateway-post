@@ -21,6 +21,8 @@ option objc_class_prefix = "RTG";
 
 package routeguide;
 
+option go_package = "protobuf;routeguide";
+
 // Interface exported by the server.
 service RouteGuide {
   // A simple RPC.
@@ -29,7 +31,7 @@ service RouteGuide {
   //
   // A feature with an empty name is returned if there's no feature at the given
   // position.
-  rpc GetFeature(Point) returns (Feature) {}
+  rpc GetFeature(Point) returns(Feature) {}
 
   // A server-to-client streaming RPC.
   //
@@ -37,19 +39,19 @@ service RouteGuide {
   // streamed rather than returned at once (e.g. in a response message with a
   // repeated field), as the rectangle may cover a large area and contain a
   // huge number of features.
-  rpc ListFeatures(Rectangle) returns (stream Feature) {}
+  rpc ListFeatures(Rectangle) returns(stream Feature) {}
 
   // A client-to-server streaming RPC.
   //
   // Accepts a stream of Points on a route being traversed, returning a
   // RouteSummary when traversal is completed.
-  rpc RecordRoute(stream Point) returns (RouteSummary) {}
+  rpc RecordRoute(stream Point) returns(RouteSummary) {}
 
   // A Bidirectional streaming RPC.
   //
   // Accepts a stream of RouteNotes sent while a route is being traversed,
   // while receiving other RouteNotes (e.g. from other users).
-  rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
+  rpc RouteChat(stream RouteNote) returns(stream RouteNote) {}
 }
 
 // Points are represented as latitude-longitude pairs in the E7 representation
