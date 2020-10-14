@@ -21,7 +21,7 @@ option objc_class_prefix = "HLW";
 
 package helloworld;
 
-option go_package = "protobuf;helloworld";
+option go_package = "protos;helloworld";
 
 // The greeting service definition.
 service Greeter {

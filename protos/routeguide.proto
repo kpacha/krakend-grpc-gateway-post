@@ -21,7 +21,7 @@ option objc_class_prefix = "RTG";
 
 package routeguide;
 
-option go_package = "protobuf;routeguide";
+option go_package = "protos;routeguide";
 
 // Interface exported by the server.
 service RouteGuide {
